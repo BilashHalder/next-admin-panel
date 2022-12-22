@@ -53,66 +53,28 @@ const navigation = () => {
       children: [
         
         {
-          title: 'Pending',
-          path: '/admin/invesment/pending'
+          title: 'Invesments',
+          path: '/admin/invesment'
         },
         {
-          title: 'Withdrwal',
-          path: '/admin/invesment/withdrwal'
+          title: 'Payout',
+          path: '/admin/payout'
         },
-        {
-          title: 'Closed',
-          path: '/admin/invesment/close'
-        },
-        
-        {
-          title: 'All',
-          path: '/admin/invesment/all'
-        },
+       
       ]
     },
     {
-      title: 'Deposit',
+      title: 'Payments',
       icon: CreditCardOutline,
       children: [
         {
-          title: 'Pending',
-          path: '/admin/deposit/pending'
+          title: 'Deposit',
+          path: '/admin/deposit'
         },
         {
-          title: 'Approved',
-          path: '/admin/deposit/approve'
+          title: 'Withdrwal',
+          path: '/admin/withdrwal'
         },
-        {
-          title: 'Rejected',
-          path: '/admin/deposit/rejected'
-        },
-        {
-          title: 'All',
-          path: '/admin/deposit/all'
-        }
-      ]
-    },
-    {
-      title: 'Withdrwal',
-      icon: BankMinus,
-      children: [
-        {
-          title: 'Pending',
-          path: '/admin/withdrwal/pending'
-        },
-        {
-          title: 'Approved',
-          path: '/admin/withdrwal/approve'
-        },
-        {
-          title: 'Rejected',
-          path: '/admin/withdrwal/rejected'
-        },
-        {
-          title: 'All',
-          path: '/admin/withdrwal/all'
-        }
       ]
     },
     {
