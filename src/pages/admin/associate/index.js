@@ -502,33 +502,22 @@ import InputLabel from '@mui/material/InputLabel'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 
-// ** Icons Imports
-import Laptop from 'mdi-material-ui/Laptop'
-import ChartDonut from 'mdi-material-ui/ChartDonut'
-import CogOutline from 'mdi-material-ui/CogOutline'
+
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import DotsVertical from 'mdi-material-ui/DotsVertical'
 import PencilOutline from 'mdi-material-ui/PencilOutline'
 import DeleteOutline from 'mdi-material-ui/DeleteOutline'
-import AccountOutline from 'mdi-material-ui/AccountOutline'
 
-// ** Store Imports
-import { useDispatch, useSelector } from 'react-redux'
-
-// ** Custom Components Imports
 import CustomChip from 'src/@core/components/mui/chip'
 import CustomAvatar from 'src/@core/components/mui/avatar'
 
-// ** Utils Import
-import { getInitials } from 'src/@core/utils/get-initials'
 
-// ** Actions Imports
-import { fetchData, deleteUser } from 'src/store/apps/user'
 
 // ** Custom Components Imports
 import ExportVariant from 'mdi-material-ui/ExportVariant'
 import AddUserDrawer from 'src/views/apps/user/list/AddUserDrawer'
 import { Button, TextField } from '@mui/material';
+import EmployeeNew from '../../../components/Add/EmployeeNew';
 
 
 
@@ -565,7 +554,6 @@ const renderClient = row => {
           color={row.avatarColor || 'primary'}
           sx={{ mr: 3, width: 34, height: 34, fontSize: '1rem' }}
         >
-          {getInitials(row.name ? row.name : 'John Doe')}
         </CustomAvatar>
       </AvatarWithoutImageLink>
     )
@@ -583,9 +571,6 @@ const MenuItemLink = styled('a')(({ theme }) => ({
 }))
 
 const RowOptions = ({ id }) => {
-  // ** Hooks
-  const dispatch = useDispatch()
-
   // ** State
   const [anchorEl, setAnchorEl] = useState(null)
   const rowOptionsOpen = Boolean(anchorEl)
@@ -598,8 +583,11 @@ const RowOptions = ({ id }) => {
     setAnchorEl(null)
   }
 
+  const handleEdit=()=>{
+
+handleRowOptionsClose();
+  }
   const handleDelete = () => {
-    dispatch(deleteUser(id))
     handleRowOptionsClose()
   }
 
@@ -631,7 +619,10 @@ const RowOptions = ({ id }) => {
             </MenuItemLink>
           </Link>
         </MenuItem>
-        <MenuItem onClick={handleRowOptionsClose}>
+        <MenuItem onClick={()=>{
+          console.log(id);
+          handleEdit()
+        }}>
           <PencilOutline fontSize='small' sx={{ mr: 2 }} />
           Edit
         </MenuItem>
@@ -657,7 +648,7 @@ const columns = [
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           {renderClient(row)}
           <Box sx={{ display: 'flex', alignItems: 'flex-start', flexDirection: 'column' }}>
-            <Link href={`/admin/associate//view/${id}`} passHref>
+            <Link href={`/admin/associate/view/${id}`} passHref>
               <Typography
                 noWrap
                 component='a'
@@ -667,7 +658,7 @@ const columns = [
                 {name}
               </Typography>
             </Link>
-            <Link href={`/admin/associate//view/${id}`} passHref>
+            <Link href={`/admin/associate/view/${id}`} passHref>
               <Typography noWrap component='a' variant='caption' sx={{ textDecoration: 'none' }}>
               </Typography>
             </Link>
@@ -676,6 +667,7 @@ const columns = [
       )
     }
   },
+
   {
     flex: 0.2,
     minWidth: 250,
@@ -689,6 +681,8 @@ const columns = [
       )
     }
   },
+
+
   {
     flex: 0.15,
     field: 'referral_key',
@@ -704,6 +698,7 @@ const columns = [
       )
     }
   },
+
   {
     flex: 0.15,
     minWidth: 120,
@@ -717,6 +712,7 @@ const columns = [
       )
     }
   },
+
   {
     flex: 0.1,
     minWidth: 110,
@@ -734,6 +730,7 @@ const columns = [
       )
     }
   },
+
   {
     flex: 0.1,
     minWidth: 90,
@@ -794,7 +791,7 @@ const UserList = () => {
           onChange={e => console.log(e.target.value)}
         />
 
-        <Button sx={{ mb: 2 }} onClick={()=>{}} variant='contained'>
+        <Button sx={{ mb: 2 }} onClick={()=>{setAddUserOpen(true)}} variant='contained'>
           Add Associate
         </Button>
       </Box>
@@ -814,7 +811,7 @@ const UserList = () => {
         </Card>
       </Grid>
 
-      <AddUserDrawer open={addUserOpen} toggle={toggleAddUserDrawer} />
+<EmployeeNew open={addUserOpen} toggle={toggleAddUserDrawer}/>
     </Grid>
   )
 }

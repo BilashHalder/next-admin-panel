@@ -114,11 +114,11 @@ const SidebarAddUser = props => {
   return (
     <Drawer
       open={open}
-      anchor='right'
+      anchor='top'
       variant='temporary'
       onClose={handleClose}
       ModalProps={{ keepMounted: true }}
-      sx={{ '& .MuiDrawer-paper': { width: { xs: 300, sm: 400 } } }}
+      sx={{ '& .MuiDrawer-paper': { } }}
     >
       <Header>
         <Typography variant='h6'>Add User</Typography>
